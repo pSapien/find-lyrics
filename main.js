@@ -1,18 +1,15 @@
 require('dotenv').config();
-const inquirer = require('inquirer');
-const chalk = require('chalk');
-const boxen = require('boxen');
-const ora = require('ora');
 
-const getLyrics = require('./getLyrics');
+const ora = require('ora');
+const boxen = require('boxen');
+const chalk = require('chalk');
+const inquirer = require('inquirer');
+
 const package = require('./package.json');
+const getLyrics = require('./getLyrics');
 
 const questions = [
-  {
-    type: 'input',
-    message: 'Enter the song you want lyrics for: ',
-    name: 'song',
-  },
+  { type: 'input', message: 'Song: ', name: 'song' },
   { type: 'input', message: 'Artist/Band: ', name: 'artist' },
 ];
 const spinner = ora('Searching your lyrics');
