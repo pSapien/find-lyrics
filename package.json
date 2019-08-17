@@ -1,6 +1,6 @@
 {
   "name": "find-lyrics",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Find lyrics of your favourite song on your Terminal",
   "main": "main.js",
   "scripts": {
@@ -9,8 +9,10 @@
   "author": "Sapien",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.4.2",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.0.0",
+    "inquirer": "^6.5.1",
     "node-fetch": "^2.6.0"
   }
 }
