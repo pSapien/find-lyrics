@@ -1,9 +1,10 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
 const chalk = require('chalk');
-const package = require('./package.json');
+const boxen = require('boxen');
 
 const getLyrics = require('./getLyrics');
+const package = require('./package.json');
 
 const questions = [
   { type: 'input', message: 'Enter the song you want lyrics for: ', name: 'song' },
@@ -12,11 +13,12 @@ const questions = [
 
 (async function main() {
   try {
-    console.log('\n');
     console.log(
-      chalk.cyan(`Find Lyrics v${package.version} - Search lyrics on your terminal`)
+      boxen(
+        chalk.cyan(`Find Lyrics v${package.version} - Search lyrics on your terminal`),
+        { padding: 1, margin: 1, borderStyle: 'double' }
+      )
     );
-    console.log('\n');
 
     const { song, artist } = await inquirer.prompt(questions);
     const lyrics = await getLyrics(song, artist);
