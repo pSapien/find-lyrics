@@ -11,7 +11,7 @@ async function getLyrics(song, artist) {
 module.exports = getLyrics;
 
 async function getSongUrl(song, artist) {
-  const res = await fetch(`https://api.genius.com/search?q=${song} ${artist}`, {
+  const res = await fetch(`https://api.genius.com/search?q=${song.trim()} ${artist.trim()}`, {
     headers: {
       "Content-type": "application/json:",
       "Authorization": `Bearer ${process.env.API_KEY}`
@@ -22,8 +22,9 @@ async function getSongUrl(song, artist) {
   const { hits } = response;
 
   for (let hit of hits) { 
-    if (hit.result.primary_artist.name.toLowerCase() === artist.toLowerCase())
+    if (hit.result.primary_artist.name.toLowerCase() === artist.toLowerCase()) { 
       return hit.result.url;
+    }
   }
   
   throw new Error('Artist Name MisMatched');
