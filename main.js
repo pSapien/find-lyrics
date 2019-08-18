@@ -1,24 +1,18 @@
 require('dotenv').config();
 
 const ora = require('ora');
-const boxen = require('boxen');
-const chalk = require('chalk');
-const inquirer = require('inquirer');
 
 const Log = require('./log');
+const Ask = require('./ask');
 const getLyrics = require('./getLyrics');
 
-const questions = [
-  { type: 'input', message: 'Song: ', name: 'song' },
-  { type: 'input', message: 'Artist/Band: ', name: 'artist' },
-];
 const spinner = ora('Searching your lyrics');
 
-(async function main() {
+async function main() {
   try {
     Log.packageName();
   
-    const { song, artist } = await inquirer.prompt(questions);
+    const { song, artist } = await Ask.forSongAndArtist();
     spinner.start();
     const lyrics = await getLyrics(song, artist);
     spinner.stop();
@@ -27,5 +21,7 @@ const spinner = ora('Searching your lyrics');
     Log.lyrics(lyrics);
   } catch (err) {
     Log.error();
-  }
-})();
+  } 
+}
+
+main();
