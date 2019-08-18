@@ -15,13 +15,14 @@ async function main() {
     const { song, artist } = await Ask.forSongAndArtist();
     spinner.start();
     const lyrics = await getLyrics(song, artist);
-    spinner.stop();
 
     Log.songAndArtist(song, artist);
     Log.lyrics(lyrics);
   } catch (err) {
     Log.error();
-  } 
+  } finally(err) {
+    spinner.stop();
+  }
 }
 
 main();
