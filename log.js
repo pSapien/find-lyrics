@@ -4,11 +4,11 @@ const chalk = require('chalk');
 const { version, description, name } = require('./package.json');
 
 class Log {
-  static packageName() { 
+  static packageName() {
     console.log(
       boxen(
         chalk.cyan(
-          `${name} v${version} - ${description}`
+          `${name.split('-').map(capitalize).join(' ')} v${version} - ${description}`
         ),
         { padding: 1, margin: 1, borderStyle: 'double' }
       )
@@ -36,5 +36,7 @@ class Log {
     );
   }
 }
+
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
 module.exports = Log;

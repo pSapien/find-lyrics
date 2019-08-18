@@ -20,7 +20,7 @@ async function main() {
     Log.lyrics(lyrics);
   } catch (err) {
     Log.error();
-  } finally(err) {
+  } finally {
     spinner.stop();
   }
 }
